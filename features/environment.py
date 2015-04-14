@@ -6,8 +6,9 @@ def before_all(context):
     browser_name = "chrome"
 
     # browser selection by -D browser=browser_name
-    if 'browser' in context.config.userdata:
-        browser_name = context.config.userdata['browser']
+    if 'userdata' in context.config:
+        if 'browser' in context.config.userdata:
+            browser_name = context.config.userdata['browser']
 
     context.browser = _get_browser_driver_by_name(browser_name)
 
