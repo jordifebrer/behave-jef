@@ -4,12 +4,6 @@ from selenium import webdriver
 def before_all(context):
     # default browser
     browser_name = "chrome"
-
-    # browser selection by -D browser=browser_name
-    if 'userdata' in context.config:
-        if 'browser' in context.config.userdata:
-            browser_name = context.config.userdata['browser']
-
     context.browser = _get_browser_driver_by_name(browser_name)
 
 
