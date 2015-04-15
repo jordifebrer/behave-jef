@@ -1,14 +1,15 @@
 from selenium import webdriver
+from selenium import remote
 
 
 def before_all(context):
     # default browser
-    browser_name = "htmlunit"
+    browser_name = "chrome"
     context.browser = _get_browser_driver_by_name(browser_name)
 
 
 def after_all(context):
-    context.browser.quit()
+    pass
 
 
 def _get_browser_driver_by_name(name):
@@ -24,7 +25,6 @@ def _get_browser_driver_by_name(name):
     elif name == 'ie':
         return webdriver.Ie()
     elif name == 'htmlunit':
-        return webdriver.Remote(
-            desired_capabilities=webdriver.DesiredCapabilities.HTMLUNIT)
+        return remote.connect('htmlunit')
     else:
         raise RuntimeError("Browser name not found by: %s" % name)
